@@ -1,28 +1,80 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FunctionComponent, useState } from 'react';
+import TodoListTemplate from './components/TodoListTemplate';
+import Form from './components/Form';
+import TodoItemList from './components/TodoItemList';
 
-class App extends Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+interface IProps {
+  //
 }
+
+const App: FunctionComponent<IProps> = () => {
+  const [input, setInput] = useState('');
+  const [todos, setTodos] = useState([
+    { id: 0, text: 'Test1', checked: false },
+    { id: 1, text: 'Test2', checked: true },
+    { id: 2, text: 'Test3', checked: false },
+  ]);
+
+  const [id, setId] = useState(3);
+
+  function handleCreate() {
+    if (input.length === 0) return;
+
+    setInput('');
+    setTodos(
+      todos.concat({
+        id: id + 1,
+        text: input,
+        checked: false,
+      })
+    );
+    setId(id + 1);
+  }
+
+  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      handleCreate();
+    }
+  }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInput(e.target.value);
+  }
+
+  function handleToggle(id?: number) {
+    const index = todos.findIndex(todo => todo.id === id);
+    const selected = todos[index];
+    const nextTodos = [...todos];
+    nextTodos[index] = {
+      ...selected,
+      checked: !selected.checked,
+    };
+
+    setTodos(nextTodos);
+  }
+
+  function handleRemove(id?: number) {
+    const index = todos.findIndex(todo => todo.id === id);
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
+  console.log('render App');
+  return (
+    <TodoListTemplate
+      form={
+        <Form
+          value={input}
+          onKeyPress={handleKeyPress}
+          onChange={handleChange}
+          onCreate={handleCreate}
+        />
+      }
+    >
+      <TodoItemList todos={todos} onRemove={handleRemove} onToggle={handleToggle} />
+    </TodoListTemplate>
+  );
+};
 
 export default App;
