@@ -9,10 +9,17 @@ interface IProps {
 }
 
 const Form: React.FunctionComponent<IProps> = ({ value, onChange, onCreate, onKeyPress }) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const handleCreate = React.useCallback(() => {
+    console.log('Form handleCreate');
+    if (onCreate) onCreate();
+    if (inputRef && inputRef.current) inputRef.current.focus();
+  }, [value]);
+
   return (
     <div className="form">
-      <input value={value} onChange={onChange} onKeyPress={onKeyPress} />
-      <div className="create-button" onClick={onCreate}>
+      <input value={value} onChange={onChange} onKeyPress={onKeyPress} ref={inputRef} />
+      <div className="create-button" onClick={handleCreate}>
         추가
       </div>
     </div>
