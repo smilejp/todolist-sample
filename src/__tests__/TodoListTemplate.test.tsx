@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import TodoListTemplate from '../components/TodoListTemplate';
-import '../testSetup';
 
 describe('<TodoListTemplate/>', () => {
   let component: ShallowWrapper<React.Component>;
