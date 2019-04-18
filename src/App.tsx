@@ -99,9 +99,9 @@ function useMangeTodo() {
   );
 
   const handleToggle = useCallback(
-    (id?: number) => {
-      console.log('App handleToggle id:', id);
-      const index = todos.findIndex(todo => todo.id === id);
+    (targetId?: number) => {
+      console.log('App handleToggle id:', targetId);
+      const index = todos.findIndex(todo => todo.id === targetId);
       const selected = todos[index];
       const nextTodos = [...todos];
       nextTodos[index] = {

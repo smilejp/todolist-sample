@@ -22,6 +22,7 @@ ShallowWrapper {
         <input />,
         <div
           className="create-button"
+          onClick={[Function]}
         >
           추가
         </div>,
@@ -39,7 +40,9 @@ ShallowWrapper {
           "onKeyPress": undefined,
           "value": undefined,
         },
-        "ref": null,
+        "ref": Object {
+          "current": null,
+        },
         "rendered": null,
         "type": "input",
       },
@@ -50,7 +53,7 @@ ShallowWrapper {
         "props": Object {
           "children": "추가",
           "className": "create-button",
-          "onClick": undefined,
+          "onClick": [Function],
         },
         "ref": null,
         "rendered": "추가",
@@ -69,6 +72,7 @@ ShallowWrapper {
           <input />,
           <div
             className="create-button"
+            onClick={[Function]}
           >
             추가
           </div>,
@@ -86,7 +90,9 @@ ShallowWrapper {
             "onKeyPress": undefined,
             "value": undefined,
           },
-          "ref": null,
+          "ref": Object {
+            "current": null,
+          },
           "rendered": null,
           "type": "input",
         },
@@ -97,7 +103,7 @@ ShallowWrapper {
           "props": Object {
             "children": "추가",
             "className": "create-button",
-            "onClick": undefined,
+            "onClick": [Function],
           },
           "ref": null,
           "rendered": "추가",
